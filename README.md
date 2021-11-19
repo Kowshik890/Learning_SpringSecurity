@@ -1,4 +1,4 @@
-# Learning_SpringSecurity
+# Spring Security Learning Topics
 ### Day 1:
 * WebSecurityConfigurerAdapter()
 * configure(http: HttpSecurity): void
