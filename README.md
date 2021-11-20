@@ -1,14 +1,15 @@
 # Spring Security Learning Topics
-### Day 1:
+### FORM BASED AUTHENTICATION
 * WebSecurityConfigurerAdapter()
+### BASIC AUTH
 * configure(http: HttpSecurity): void
   * .authorizeRequest()
   * .anyRequest()
   * .authenticated()
   * .and()
   * .httpBasic();
-* Ant Machers (to White List URLs)
+### Ant Machers 
+--> to White List URLs
   * .antMatchers("/", "index", "/css/*", "/js/*")
   * .permitAll()
-
-### Day 2:
+### IN MEMORY USER DETAILS MANAGER
