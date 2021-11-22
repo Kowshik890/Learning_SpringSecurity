@@ -36,6 +36,6 @@
  * antMatchers("/api/**").hasRole(STUDENT.name())
   * only student can access the API. E.g: "/api/v1/students/1" 
  ### PERMISSION BASED AUTHENTICATION
- 
+ * hasAuthorithy()
  
  
