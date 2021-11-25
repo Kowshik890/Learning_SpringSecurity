@@ -12,7 +12,7 @@ import static com.example.SpringSecurityPractice.security.ApplicationUserPermiss
 public enum ApplicationUserRole {
     STUDENT(Sets.newHashSet()),
     ADMIN(Sets.newHashSet(STUDENT_READ, STUDENT_WRITE, COURSE_READ, COURSE_WRITE)),
-    ADMINTRINEE(Sets.newHashSet(STUDENT_READ, COURSE_READ));
+    ADMINTRAINEE(Sets.newHashSet(STUDENT_READ, COURSE_READ));
 
     private final Set<ApplicationUserPermission> permissions;
 
