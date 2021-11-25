@@ -62,3 +62,13 @@
    * E.G: .authorities(ROLE_NAME.getGrantedAuthority())   // ADMIN, STUDENT, ...
  ### ORDER of ANTMATCHERS
  * Order of antMatchers must be maintained carefully while giving permission to the respective roles
+ ### PREAUTHORIZE() ANNOTATION
+ * PreAuthorize() annotation can be used instead of antMatchers()
+ * First use "@EnableGlobalMethodSecurity(prePostEnabled = true)" annotation in "ApplicationSecurityConfig" class 
+ * In "StudentManagementController" use "@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")" annotation under "@GetMapping" annotation  // for both ADMIN & ADMINTRAINEE
+ * "@PreAuthorize("hasAuthority('student:write')")" annotation under "@PostMapping", "@PutMapping" & "@DeleteMapping",   // for only ADMIN 
+ 
+ 
+ 
+ 
+ 
