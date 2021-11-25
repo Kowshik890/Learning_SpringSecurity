@@ -60,4 +60,5 @@
  
    * Second step is to add ".authority()" instead of ".roles()" in "ApplicationSecurityConfig" class inside "UserDetailsService userDetailsService()" function 
    * E.G: .authorities(ROLE_NAME.getGrantedAuthority())   // ADMIN, STUDENT, ...
- 
+ ### ORDER of ANTMATCHERS
+ * Order of antMatchers must be maintained carefully while giving permission to the respective roles
