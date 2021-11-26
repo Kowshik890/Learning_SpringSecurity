@@ -67,7 +67,15 @@
  * First use "@EnableGlobalMethodSecurity(prePostEnabled = true)" annotation in "ApplicationSecurityConfig" class 
  * In "StudentManagementController" use "@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")" annotation under "@GetMapping" annotation  // for both ADMIN & ADMINTRAINEE
  * "@PreAuthorize("hasAuthority('student:write')")" annotation under "@PostMapping", "@PutMapping" & "@DeleteMapping",   // for only ADMIN 
- 
+ ### CSRF Token (For Browser Clients)
+ * [When to use CSRF protection](https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/csrf.html#when-to-use-csrf-protection)
+ * During using POSTMAN, add "Postman Interceptor" extension to browser. Then activate interceptor from POSTMAN.
+ * Get "XSRF-TOKEN" from "Cookies". Then, in Headers, add "X-XSRF-TOKEN" and paste the value.
+ * In "ApplicationSecurityConfig" add these below two lines instead of ".csrf().disable()"
+ ```
+    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())   // that is used by browser clients
+    .and()   // that is used by browser clients
+ ```
  
  
  
