@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static com.example.SpringSecurityPractice.security.ApplicationUserPermission.*;
 import static com.example.SpringSecurityPractice.security.ApplicationUserRole.*;
@@ -32,7 +33,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // TODO: I will teach this in detail in the next section
+                // .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())   // that is used by browser clients
+                // .and()   // that is used by browser clients
+                .csrf().disable()   // that is used by non-browser clients
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/**").hasRole(STUDENT.name())
