@@ -77,6 +77,17 @@
     .and()   // that is used by browser clients
  ```
  
- 
- 
+ ### CUSTOM LOGIN PAGE (Based on FORM BASED AUTHENTICATION)
+ * Comment ".httpBasic()" and add ".formLogin()" from "ApplicationSecurityConfig" class
+ * For Login (Custom) Page
+   * in pom.xml file add "thymeleaf" as dependency
+   * create "templates" folder inside "resources"
+   * inside "templates" folder create custom login page
+   * to access "login.html", create "TemplateController"
+   * N.B: return "String" should be same as custom login page file name. E.g: "login"
+   * lastly, add ".loginPage("/login").permitAll();"  // Here, "/login" is written according to "TemplateController" GetMapping path
+ * redirect after login
+   * create a method for the redirected page (e.g: courses)
+   * create a html file for that page/path
+   * add the path in "ApplicationSecurityConfig" class by ".defaultSuccessUrl("/courses", true)"
  
