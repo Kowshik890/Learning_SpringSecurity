@@ -90,4 +90,21 @@
    * create a method for the redirected page (e.g: courses)
    * create a html file for that page/path
    * add the path in "ApplicationSecurityConfig" class by ".defaultSuccessUrl("/courses", true)"
- 
+ ### REMEMBER ME with COOKIE & SESSION ID
+ ```
+    .and()
+    .rememberMe()
+        .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+        .key("somethingverysecured"); // default to 2 weeks
+ ```
+ ### LOGOUT
+ ```
+    .and()
+    .logout()
+        .logoutUrl("/logout")
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))  // it has to use only when .csrf().disable()
+        .clearAuthentication(true)
+        .invalidateHttpSession(true)
+        .deleteCookies("JSESSIONID", "remember-me")
+        .logoutSuccessUrl("/login");
+ ```
