@@ -108,3 +108,55 @@
         .deleteCookies("JSESSIONID", "remember-me")
         .logoutSuccessUrl("/login");
  ```
+ ### JSON WEB TOKEN (JWT)
+ JWT is a means of transmitting information between two parties in a compact, verifiable form.
+ * Add these dependencies in pom.xml file to execute JWT
+ ```
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.11.2</version>
+    </dependency>
+		
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>0.11.2</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+      <version>0.11.2</version>
+      <scope>runtime</scope>
+    </dependency>
+ ```
+ * JwtUsernameAndPasswordAuthenticationFilter - attemptAuthentication()
+   * to verified the credentials create a class "JwtUsernameAndPasswordAuthenticationFilter"
+   * override "attemptAuthentication()" method in that class
+   * for more understanding, go to "JwtUsernameAndPasswordAuthenticationFilter" file
+   * create another class "UsernameAndPasswordAuthenticationRequest" 
+ * JwtUsernameAndPasswordAuthenticationFilter - successfulAuthentication()
+   * inside "JwtUsernameAndPasswordAuthenticationFilter" class, override "successfulAuthentication()" method
+   * after validates credentials successfully, sends token to the client
+   * for more understanding, go to "JwtUsernameAndPasswordAuthenticationFilter" file
+ * Filters and Stateless Sessions
+   * in "ApplicationSecurityConfig" class while switching from form based authentication with extension of Session to JWT token based authentication, following functions don't need
+      - formLogin()
+      - rememberMe()
+      - logout()
+   * add these lines to configure JWT Token based Authentication
+   ```
+      .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+      .and()
+      .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+   ```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
