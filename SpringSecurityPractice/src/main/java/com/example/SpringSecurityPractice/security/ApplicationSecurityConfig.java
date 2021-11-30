@@ -1,5 +1,6 @@
 package com.example.SpringSecurityPractice.security;
 
+import com.example.SpringSecurityPractice.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,12 +9,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.example.SpringSecurityPractice.security.ApplicationUserPermission.*;
 import static com.example.SpringSecurityPractice.security.ApplicationUserRole.*;
@@ -36,6 +41,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())   // that is used by browser clients
                 // .and()   // that is used by browser clients
                 .csrf().disable()   // that is used by non-browser clients
+                //  Next three lines are used to configure JWT Token based Authentication
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/**").hasRole(STUDENT.name())
@@ -44,12 +54,31 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .antMatchers(HttpMethod.PUT,"/management/api/**").hasAuthority(COURSE_WRITE.getPermission())
                 // .antMatchers(HttpMethod.GET,"/management/api/**").hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())
                 .anyRequest()
-                .authenticated()
-                .and()
+                .authenticated();
+        //      While switching from form based authentication with extension of Session to
+        //      JWT token based authentication, following lines don't need
+        /*      .and()
                 // .httpBasic();   // When use FORM BASED AUTHENTICATION, comment Basic Auth
                 .formLogin()  // FORM BASED AUTHENTICATION
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/courses", true);
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/courses", true)
+                    .passwordParameter("password")
+                    .usernameParameter("username")
+                .and()
+                .rememberMe()
+                    .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                    .key("somethingverysecured") // default to 2 weeks
+                    .rememberMeParameter("remember-me")
+                .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))  // it has to use only when .csrf().disable()
+                    .clearAuthentication(true)
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .logoutSuccessUrl("/login");
+              */
     }
 
     @Override
