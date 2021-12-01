@@ -135,12 +135,12 @@
  * JwtUsernameAndPasswordAuthenticationFilter - attemptAuthentication()
    * to verified the credentials create a class "JwtUsernameAndPasswordAuthenticationFilter"
    * override "attemptAuthentication()" method in that class
-   * for more understanding, go to "JwtUsernameAndPasswordAuthenticationFilter" file
+   * for more understanding, go to "[JwtUsernameAndPasswordAuthenticationFilter](https://github.com/Kowshik890/Learning_SpringSecurity/blob/main/SpringSecurityPractice/src/main/java/com/example/SpringSecurityPractice/jwt/JwtUsernameAndPasswordAuthenticationFilter.java)" file
    * create another class "UsernameAndPasswordAuthenticationRequest" 
  * JwtUsernameAndPasswordAuthenticationFilter - successfulAuthentication()
    * inside "JwtUsernameAndPasswordAuthenticationFilter" class, override "successfulAuthentication()" method
    * after validates credentials successfully, sends token to the client
-   * for more understanding, go to "JwtUsernameAndPasswordAuthenticationFilter" file
+   * for more understanding, go to "[JwtUsernameAndPasswordAuthenticationFilter](https://github.com/Kowshik890/Learning_SpringSecurity/blob/main/SpringSecurityPractice/src/main/java/com/example/SpringSecurityPractice/jwt/JwtUsernameAndPasswordAuthenticationFilter.java)" file
  * Filters and Stateless Sessions
    * in "ApplicationSecurityConfig" class while switching from form based authentication with extension of Session to JWT token based authentication, following functions don't need
       - formLogin()
