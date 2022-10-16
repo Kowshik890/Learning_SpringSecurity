@@ -11,6 +11,10 @@
   * .authenticated()
   * .and()
   * .httpBasic();
+  
+* N.B: The Drawback of BASIC AUTH is, there is no way of logging out.
+       Because, username and password are sent in every single request. 
+       And, for every single request, server has to validate whether the username and password is correct or not.
 ### Ant Machers 
 * to White List URLs
 * .antMatchers("/", "index", "/css/*", "/js/*") 
