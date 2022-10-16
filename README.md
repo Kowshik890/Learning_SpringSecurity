@@ -2,6 +2,9 @@
 ### FORM BASED AUTHENTICATION
 * WebSecurityConfigurerAdapter()
 ### BASIC AUTH
+* Basic AUTH Overview
+	[![Screenshot-2022-10-16-at-16-13-43.png](https://i.postimg.cc/dDcMwwHS/Screenshot-2022-10-16-at-16-13-43.png)](https://postimg.cc/xN5pPDSK)
+
 * configure(http: HttpSecurity): void
   * .authorizeRequest()
   * .anyRequest()
