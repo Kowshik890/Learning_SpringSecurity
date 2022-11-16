@@ -1,6 +1,9 @@
 # Spring Security Learning Topics
 
 ### This tutorial is learned from this resource: [Spring Security by Amigoscode](https://www.youtube.com/watch?v=her_7pa0vrg&t=2559s)
+### More Important links: 
+* [Spring Security: Authentication Architecture Explained In Depth](https://backendstory.com/spring-security-authentication-architecture-explained-in-depth/)
+* [Spring Security Authentication](https://www.javadevjournal.com/spring-security/spring-security-authentication/)
 
 ### FORM BASED AUTHENTICATION
 * WebSecurityConfigurerAdapter()
