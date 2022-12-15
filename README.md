@@ -170,9 +170,3 @@
 	* to validate token, whether it is still valid or not by server while sending a token for every single request by client
 	* create a filter name "JwtTokenVerifier" where the task of this filter is to check whether the token is valid or not
  	* add ".addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthenticationFilter.class)" in "ApplicationSecurityConfig" class
-
- 
- 
- 
- 
- 
